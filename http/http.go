@@ -8,11 +8,12 @@ import (
 )
 
 type Http struct {
-	data         *data.Data
-	addr         string
-	token        string
-	historyLimit int
-	gin          *gin.Engine
+	data          *data.Data
+	addr          string
+	token         string
+	historyLimit  int
+	onlineIpLimit int
+	gin           *gin.Engine
 }
 
 func NewHttp(c *conf.Conf, data *data.Data) *Http {
@@ -40,10 +41,14 @@ func (p *Http) initRoute() {
 			if p.historyLimit > 0 {
 				p.data.AddIpHistory(&userIp)
 			}
-			ip := p.data.SyncUserOnlineIP(&userIp)
-			context.JSON(200, ip)
+			if p.onlineIpLimit > 0 {
+				ip := p.data.SyncUserOnlineIP(&userIp)
+				context.JSON(200, ip)
+			} else {
+				context.String(200, "ok")
+			}
 		} else {
-			context.Status(502)
+			context.Status(403)
 			return
 		}
 	})
