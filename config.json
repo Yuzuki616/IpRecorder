@@ -1,0 +1,9 @@
+{
+  "Addr": "127.0.0.1:1211",
+  "Token": "token",
+  "IpDb": "./IP2LOCATION-LITE-DB3.BIN",
+  "MasterId": 123,
+  "BotToken": "token",
+  "HistoryIpLimit": 3,
+  "OnlineIpLimit": 3
+}
