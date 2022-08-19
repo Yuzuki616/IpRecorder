@@ -10,4 +10,4 @@ PS：本人随手写出来自用的半成品，不保证任何可用性，有能
 - `MasterId` Telegram用户Id，用于推送历史连接Ip超限通知
 - `BotToken` Telegram BotToken
 - `HistoryIpLimit` 每日连接Ip数量限制，同城市算作一个Ip，超出将推送tg消息通知。为0不启用
-- `OnlineIpLimit` 在线Ip数量限制，为0不启用
+- `OnlineIpLimit` 在线Ip数量限制，为0不启用，该项仅限制记录的IP数量，实质上的限制仍依据V2bX的 `DeviceLimit` 配置项
