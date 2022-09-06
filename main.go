@@ -18,6 +18,10 @@ func main() {
 	if err != nil {
 		log.Fatalln("Init config obj error: ", err)
 	}
+	err = config.LoadConfig()
+	if err != nil {
+		log.Fatalln("Load config error: ", err)
+	}
 	dataObj := data.New(config.OnlineIpLimit)
 	go func() {
 		err := http.NewHttp(config, dataObj).Start()
