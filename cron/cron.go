@@ -2,6 +2,7 @@ package cron
 
 import (
 	"IpRecorder/bot"
+	"IpRecorder/conf"
 	"IpRecorder/data"
 	"fmt"
 	"github.com/ip2location/ip2location-go/v9"
@@ -17,13 +18,13 @@ type Cron struct {
 	ip           *ip2location.DB
 }
 
-func New(data *data.Data, bot *bot.Bot, limit int) (*Cron, error) {
-	ip, err := ip2location.OpenDB("./ipdata.bin")
+func New(data *data.Data, bot *bot.Bot, config *conf.Conf) (*Cron, error) {
+	ip, err := ip2location.OpenDB(config.IpDb)
 	if err != nil {
 		return nil, err
 	}
 	return &Cron{
-		historyLimit: limit,
+		historyLimit: config.HistoryIpLimit,
 		ip:           ip,
 		data:         data,
 		bot:          bot,
